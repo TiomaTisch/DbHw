@@ -1,9 +1,13 @@
 package com.example.DbHw1.service;
 
 import com.example.DbHw1.module.Faculty;
+import com.example.DbHw1.module.Student;
 import com.example.DbHw1.repository.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class FacultyService {
@@ -32,4 +36,13 @@ public class FacultyService {
     }
 
     // другие методы
+    public List<Faculty> searchFaculties(String query) {
+        return facultyRepository.findByNameIgnoreCaseOrColorIgnoreCase(query, query);
+    }
+
+    public List<Student> getFacultyStudents(Long facultyId) {
+        return facultyRepository.findById(facultyId)
+                .map(Faculty::getStudents)
+                .orElse(Collections.emptyList());
+    }
 }
