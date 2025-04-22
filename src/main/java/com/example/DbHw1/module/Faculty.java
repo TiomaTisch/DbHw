@@ -19,12 +19,41 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty")
     private List<Student> students;
 
+    public Faculty(String name, String color) {
+        this.name = name;
+        this.color = color;
+    }
+    public Faculty() {
+
+    }
+
     // геттеры, сеттеры и другие поля
 
     public void setId(Long id) {
+        this.id = id;
     }
 
     public List<Student> getStudents() {
         return this.students;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Object getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
     }
 }
